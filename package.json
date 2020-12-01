@@ -18,8 +18,6 @@
     "react_ujs": "^2.6.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "tailwind-react-ui": "^0.8.1",
-    "tailwindcss": "^2.0.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
