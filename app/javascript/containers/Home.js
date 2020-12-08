@@ -1,11 +1,12 @@
 import React from "react"
+import Banner from '../components/Banner'
 
 class Home extends React.Component {
   
   render () {
     return (
       <div>
-        <h1>Welcome to Art Lab Collab!</h1>
+        <Banner pageName="Profile"/>
       </div>
     );
   }

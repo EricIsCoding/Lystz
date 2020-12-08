@@ -1,11 +1,11 @@
 import React from "react"
-import PropTypes from "prop-types"
+import Banner from "../components/Banner"
 
 class Collaborations extends React.Component {
   render () {
     return (
       <div>
-        <h1>Collaborations Page!</h1>
+        <Banner pageName="Collaborations"/>
       </div>
     );
   }
