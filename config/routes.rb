@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     resources :home, only: :index
+    resources :collaborations
   end
 
   #default path when entering site
