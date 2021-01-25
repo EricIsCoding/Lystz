@@ -1,14 +1,14 @@
 import React from "react"
 import Banner from "../components/Banner"
 
-class Collaborations extends React.Component {
+class Collaborate extends React.Component {
   render () {
     return (
       <div>
-        <Banner pageName="Collaborations"/>
+        <Banner pageName="Collaborate"/>
       </div>
     );
   }
 }
 
-export default Collaborations
+export default Collaborate

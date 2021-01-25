@@ -1,15 +1,15 @@
 import React from "react"
 import Banner from '../components/Banner'
 
-class Home extends React.Component {
+class Profile extends React.Component {
   
   render () {
     return (
       <div>
-        <Banner pageName="Home"/>
+        <Banner pageName="Profile"/>
       </div>
     );
   }
 }
 
-export default Home
+export default Profile
