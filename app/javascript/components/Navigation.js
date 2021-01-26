@@ -1,22 +1,35 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React from 'react'
+import {Nav, Navbar} from 'react-bootstrap'
+import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-router-dom'
 
 import Home from '../containers/Home'
-import Collaborate from '../containers/Collaborate'
-import Profile from '../containers/Profile'
-import NewCollab from './NewCollab'
+import VendorPage from '../containers/VendorPage'
+import BlockPage from '../containers/BlockPage'
 
-export default class Navigation extends Component {
-    render() {
-        return (
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/profile" component={Profile}/>
-                    <Route exact path="/collaborate" component={Collaborate} />
-                    <Route exact path="/new-collab" component={NewCollab} />
-                </Switch>
-            </Router>
-        )
-    }
+ 
+const Navigation =  (props) => {
+
+ 
+    return(
+      <Router>
+      <Navbar bg="dark" variant="dark" expand="sm" >
+        <Navbar.Brand as={Link} to="/">Lystz</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+          <Route render={({ history}) => (<Nav.Link onClick={() => { history.push('/blocks') }}>All Blocks!</Nav.Link>)} />
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/blocks" component={BlockPage}/>
+        <Route exact path="/:vendor/blocks" component={VendorPage}/>
+        <Route render={() => <Redirect to={{pathname: "/"}} />} />
+      </Switch>
+  </Router>
+    )
 }
+
+ 
+export default Navigation;

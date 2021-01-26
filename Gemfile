@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
@@ -52,3 +52,7 @@ gem "rack-cors", "~> 1.1"
 gem "cloudinary", "~> 1.18"
 
 gem "jsonapi-serializer", "~> 2.1"
+
+gem "faker", "~> 2.15"
+
+gem "pry", "~> 0.13.1"

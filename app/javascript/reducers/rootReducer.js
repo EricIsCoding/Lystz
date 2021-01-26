@@ -1,11 +1,10 @@
-const initialState = {
-    user: {}
-  }
-  
-  // Use the initialState as a default value
-  export default function appReducer(state = initialState, action) {
-    switch (action.type) {
-      default:
-        return state
-    }
-  }
+import { vendorReducer } from './vendorReducer'
+import { blockReducer } from './blockReducer'
+import { itemReducer } from './itemReducer'
+import { combineReducers } from 'redux'
+
+export const rootReducer = combineReducers({
+        block: blockReducer,
+        item: itemReducer,
+        vendor: vendorReducer
+})

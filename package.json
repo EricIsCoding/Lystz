@@ -22,7 +22,8 @@
     "react_ujs": "^2.6.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "json-api-normalizer": "1.0.1"
   },
   "version": "0.1.0",
   "devDependencies": {

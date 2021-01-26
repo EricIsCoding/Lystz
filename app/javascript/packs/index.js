@@ -1,14 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '../App'
+
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import App from '../components/App'
+import { rootReducer } from '../reducers/rootReducer'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)))
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement('div')),
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.body.appendChild(document.createElement('div'))
   )
 })

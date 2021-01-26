@@ -10,18 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_012609) do
+ActiveRecord::Schema.define(version: 7) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "collaborations", force: :cascade do |t|
-    t.string "collaborator"
-    t.string "piece"
-    t.string "format"
-    t.json "information", default: {}
+  create_table "blocks", force: :cascade do |t|
+    t.string "name"
+    t.string "creator"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "vendor_id"
+    t.index ["vendor_id"], name: "index_blocks_on_vendor_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "block_id"
+    t.bigint "vendor_id"
+    t.string "brand"
+    t.string "description"
+    t.integer "quantity"
+    t.boolean "active"
+    t.index ["block_id"], name: "index_items_on_block_id"
+    t.index ["vendor_id"], name: "index_items_on_vendor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +53,14 @@ ActiveRecord::Schema.define(version: 2020_12_08_012609) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string "name"
+    t.string "website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "blocks", "vendors"
+  add_foreign_key "items", "blocks"
+  add_foreign_key "items", "vendors"
 end

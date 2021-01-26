@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  #resources for api calls
   namespace :api, defaults: { format: 'json' } do
-    resources :home, only: :index
-    resources :collaborations
+    resources :items
+    resources :blocks
+    resources :vendors
   end
 
   #default path when entering site
