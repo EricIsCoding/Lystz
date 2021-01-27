@@ -56,3 +56,5 @@ gem "jsonapi-serializer", "~> 2.1"
 gem "faker", "~> 2.15"
 
 gem "pry", "~> 0.13.1"
+
+gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
