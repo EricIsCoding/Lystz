@@ -3,6 +3,7 @@ lock "~> 3.15.0"
 
 set :application, "lystz"
 set :repo_url, "git@github.com:EricIsCoding/Lystz.git"
+set :branch, "main"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"

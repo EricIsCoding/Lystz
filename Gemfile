@@ -40,31 +40,30 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "faker", "~> 2.15"
+  gem "pry", "~> 0.13.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#Streamlines webpacker/react integration
 gem "react-rails", "~> 2.6"
 
+#User authentication
 gem "devise", "~> 4.7"
-gem "rack-cors", "~> 1.1"
-gem "cloudinary", "~> 1.18"
 
+#Implements a CORS policy
+gem "rack-cors", "~> 1.1"
+
+#Easy serialization 
 gem "jsonapi-serializer", "~> 2.1"
 
-gem "faker", "~> 2.15"
-
-gem "pry", "~> 0.13.1"
-
+# Gems for Deployment
 gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
-
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rvm'
-gem "dotenv", "~> 2.7"
-
 gem "ed25519", "~> 1.2"
-
 gem "bcrypt_pbkdf", "~> 1.1"

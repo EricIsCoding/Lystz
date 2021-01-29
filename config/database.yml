@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: art_lab_collab_production
+  database: lysts_production
   username: art_lab_collab
   password: <%= ENV['ART_LAB_COLLAB_DATABASE_PASSWORD'] %>
