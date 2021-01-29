@@ -64,6 +64,6 @@ gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rvm'
+gem 'capistrano-rbenv'
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.1"
