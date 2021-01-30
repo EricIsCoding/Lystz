@@ -3,7 +3,7 @@ class API::VendorsController < ApplicationController
 
   # GET /vendors
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.all.filter{|vendor| vendor.user_id == current_user.id}
 
     render json: VendorSerializer.new(@vendors).serializable_hash.to_json
   end
@@ -15,7 +15,10 @@ class API::VendorsController < ApplicationController
 
   # POST /vendors
   def create
+
     @vendor = Vendor.new(vendor_params)
+
+    @vendor.user = current_user
 
     if @vendor.save
 
@@ -47,6 +50,6 @@ class API::VendorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vendor_params
-      params.require(:vendor).permit(:name, :website)
+      params.require(:vendor).permit(:name, :website, :user_id)
     end
 end
