@@ -10,7 +10,10 @@ import { rootReducer } from '../reducers/rootReducer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk)))
+const composed = compose(applyMiddleware(thunk), 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+const store = createStore(rootReducer, composed)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

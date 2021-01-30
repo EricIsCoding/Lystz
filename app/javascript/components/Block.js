@@ -25,7 +25,7 @@ const Block = (props) => {
 
     const title = () => {
         if(props.blockPage === true) {
-           return `${props.name} Store: ${props.vendor}`
+           return `${props.name} : ${props.vendor}`
         } else {
             return `${props.name}`
         }
