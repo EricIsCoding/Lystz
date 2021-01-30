@@ -42,6 +42,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "faker", "~> 2.15"
   gem "pry", "~> 0.13.1"
+  gem "pry-remote", "~> 0.1.8"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
