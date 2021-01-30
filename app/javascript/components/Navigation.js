@@ -5,10 +5,23 @@ import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-rout
 import Home from '../containers/Home'
 import VendorPage from '../containers/VendorPage'
 import BlockPage from '../containers/BlockPage'
+import { csrf } from '../helpers'
 
  
 const Navigation =  (props) => {
 
+  const sign_out = () => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-TOKEN': csrf
+      }
+    }
+    fetch('/users/sign_out', options)
+      .then(() => {
+        location.reload();
+      })
+  }
  
     return(
       <Router>
@@ -20,6 +33,9 @@ const Navigation =  (props) => {
           <Route render={({ history}) => (<Nav.Link onClick={() => { history.push('/blocks') }}>All Blocks!</Nav.Link>)} />
           </Nav>
         </Navbar.Collapse>
+        <Nav>
+          <Nav.Link onClick={sign_out}>Sign Out</Nav.Link>
+        </Nav>
       </Navbar>
       <Switch>
         <Route exact path="/" component={Home} />
