@@ -10,10 +10,13 @@ require 'faker'
 
 stores = ["Target", "Trader Joes", "Costco"]
 
+user = User.find(1)
+
 3.times.with_index do |i|
     Vendor.create(
         name: "#{stores[i]}",
-        website: "#{stores[i]}.com"
+        website: "#{stores[i]}.com",
+        user_id: user.id
     )
 end
 

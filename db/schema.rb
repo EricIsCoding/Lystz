@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 2021_01_30_034104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 7) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "vendor_id"
     t.index ["vendor_id"], name: "index_blocks_on_vendor_id"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "family_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -56,8 +62,10 @@ ActiveRecord::Schema.define(version: 7) do
   create_table "vendors", force: :cascade do |t|
     t.string "name"
     t.string "website"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_vendors_on_user_id"
   end
 
   add_foreign_key "blocks", "vendors"
