@@ -10,8 +10,7 @@ import { rootReducer } from '../reducers/rootReducer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const composed = compose(applyMiddleware(thunk), 
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composed = compose(applyMiddleware(thunk))
 
 const store = createStore(rootReducer, composed)
 
