@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Block from '../components/Block'
 import { connect } from 'react-redux'
-import { filtered, childIds } from '../helpers'
+import { filtered, childIds } from '../helpers/helpers'
 
 class BlockPage extends Component {
     

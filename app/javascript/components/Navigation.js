@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-rout
 import Home from '../containers/Home'
 import VendorPage from '../containers/VendorPage'
 import BlockPage from '../containers/BlockPage'
-import { csrf } from '../helpers'
+import { csrf } from '../helpers/helpers'
 
  
 const Navigation =  (props) => {

@@ -3,19 +3,20 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Block from '../components/Block'
 import { connect } from 'react-redux'
-import { filtered, childIds } from '../helpers'
+import { filtered } from '../helpers/helpers'
 import BlockInput from '../components/BlockInput'
 
 class VendorPage extends Component {
     
     renderBlocks() {
         return this.props.blocks.map(block => {
+        debugger;
         return <Block 
         key={block.id} 
         id={block.id} 
-        name={block.attributes.name} 
-        creator={block.attributes.creator}
-        vendorId={this.props.vendor.id} 
+        name={block.name} 
+        creator={block.creator}
+        vendorId={this.props.vendorId} 
         items={block.items}/>})
     }
 
@@ -35,7 +36,7 @@ class VendorPage extends Component {
 
     render() {
         return <div>
-        <h1>{this.props.vendor.attributes.name}</h1>
+        <h1>{this.props.vendor.name}</h1>
         <Container>
             {this.renderRows()}
             <BlockInput vendorId={this.props.vendor.id}/>
@@ -45,14 +46,12 @@ class VendorPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-   
-    const vendor = Object.values(filtered(state.vendor, [ownProps.location.state.id]))[0]
-    const blocks = Object.values(filtered(state.block, childIds(vendor.relationships.blocks.data)))
+    const vendor = Object.values(filtered(state.vendors, [ownProps.location.state.id]))[0]
+    const blocks = Object.values(filtered(state.blocks, vendor.blockIds))
     const blocksWithItems = blocks.map(block => {
-       
-       return {...block, items: Object.values(filtered(state.item, childIds(block.relationships.items.data)))}
+       return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })
-    
+    debugger;
     return {
         vendor,
         blocks: blocksWithItems

@@ -13,13 +13,13 @@ const Block = (props) => {
             return <Item 
             key={item.id} 
             id={item.id} 
-            name={item.attributes.name} 
-            brand={item.attributes.brand} 
-            description={item.attributes.description} 
-            quantity={item.attributes.quantity} 
+            name={item.name} 
+            brand={item.brand} 
+            description={item.description} 
+            quantity={item.quantity} 
             handleDelete={props.handleDelete}
-            vendorId={item.relationships.vendor.data.id}
-            blockId={item.relationships.block.data.id}/>
+            vendorId={item.vendorId}
+            blockId={item.blockId}/>
         }) 
     }
 

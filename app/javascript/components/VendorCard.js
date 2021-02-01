@@ -10,7 +10,7 @@ const VendorCard = (props) => {
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.website}</Card.Subtitle>
                 <Card.Text>
-                Number of Blocks: {props.blocks.length}
+                Number of Blocks: {props.blockIds.length}
                 </Card.Text>
                 <Button onClick={props.handleClick} name={props.name} id={props.id}variant="dark">View Blocks!</Button>
                 <DeleteButton type="vendor" id={props.id} blockIds={props.blockIds}/>

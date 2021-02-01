@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import VendorCard from '../components/VendorCard'
 import { fetchVendors } from '../actions/vendorActions'
 import VendorInput  from '../components/VendorInput'
-import { childIds } from '../helpers'
 
 class Home extends Component {
 
@@ -23,15 +22,14 @@ class Home extends Component {
         handleClick={this.handleClick.bind(this)} 
         key={vendor.data.id} 
         id={vendor.data.id} 
-        name={vendor.data.attributes.name} 
-        website={vendor.data.attributes.website} 
-        blocks={vendor.data.relationships.blocks.data} 
-        blockIds={vendor.blockIds}/>
+        name={vendor.data.name} 
+        website={vendor.data.website} 
+        blockIds={vendor.data.blockIds}/>
         )
     }
 
     render() {
-        if(this.props.vendors && this.props.vendors.legth !== 0) {
+        if(this.props.vendors && this.props.vendors.count !== 0) {
            return(
             <div>
                 {this.renderVendors()}
@@ -47,16 +45,13 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-   
-    if(state.vendor) {
-        let keys = Object.keys(state.vendor)
+    if(state.vendors) {
+        let keys = Object.keys(state.vendors)
         let mappedVendors = keys.map(key => {
             return {
-                data: state.vendor[key],
-                blockIds: childIds(state.vendor[key].relationships.blocks.data)
+                data: state.vendors[key]
             }
         })
-       
         return { vendors: mappedVendors }
     }
 }

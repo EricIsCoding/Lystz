@@ -4,8 +4,9 @@ class API::VendorsController < ApplicationController
   # GET /vendors
   def index
     @vendors = Vendor.all.filter{|vendor| vendor.user_id == current_user.id}
-
-    render json: VendorSerializer.new(@vendors).serializable_hash.to_json
+    options = {}
+    options[:include] = [:blocks, :items]
+    render json: VendorSerializer.new(@vendors, options).serializable_hash.to_json
   end
 
   # GET /vendors/1
