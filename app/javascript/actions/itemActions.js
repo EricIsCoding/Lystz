@@ -1,4 +1,5 @@
-import { csrf }from '../helpers';
+import { csrf }from '../helpers/helpers';
+import itemNormalizer from '../helpers/normlaizer/itemNormalizer';
 
 export const itemAddSuccess = (item) => {
     return {
@@ -21,7 +22,8 @@ export function addItem(item) {
         return fetch('/api/items', options)
         .then(res => res.json())
         .then(json => {
-            dispatch(itemAddSuccess(json))
+            debugger;
+            dispatch(itemAddSuccess(itemNormalizer(json)))
         })
     }
 }
