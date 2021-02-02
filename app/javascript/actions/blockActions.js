@@ -1,5 +1,5 @@
 import { csrf }from '../helpers/helpers';
-import blockNormalizer from '../helpers/normlaizer/blockNormalizer'
+import BlockNormalizer from '../helpers/normalizer/BlockNormalizer'
 
 export const blockAddSuccess = (block) => {
     return {
@@ -22,7 +22,7 @@ export function addBlock(block) {
         return fetch('/api/blocks', options)
         .then(res => res.json())
         .then(json => {
-            dispatch(blockAddSuccess(blockNormalizer(json)))
+            dispatch(blockAddSuccess(BlockNormalizer(json.data)))
         })
     }
 }

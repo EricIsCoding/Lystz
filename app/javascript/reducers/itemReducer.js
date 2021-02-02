@@ -5,12 +5,10 @@ export function itemReducer(state = {
         case "API_FETCH_SUCCESS":
           return {
               ...state,
-              ...action.data.item
+              ...action.data.items
           }
         case "ADD_ITEM_SUCCESS":
-            const addItemState = {...state, 
-                [action.item.data.id]: {...action.item.data}}
-                
+            const addItemState = {...state, [action.item.id]: {...action.item}}
             return addItemState
         case "REMOVE_ITEM":
             const newState = {...state}          

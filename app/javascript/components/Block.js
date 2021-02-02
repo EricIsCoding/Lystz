@@ -46,7 +46,7 @@ const Block = (props) => {
         <Accordion>
         <Card>
             <h5>{title()}</h5>
-            <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/>
+            {(props.blockPage !== true) ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/> : ""}
         </Card>
            {renderItems()}
            {itemInput()}

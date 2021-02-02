@@ -1,6 +1,6 @@
 import childIds from '../childIds'
 
-const blockNormalizer = (block) => {
+const BlockNormalizer = (block) => {
     return {
         id: block.id,
         ...block.attributes,
@@ -9,4 +9,4 @@ const blockNormalizer = (block) => {
     }
 }
 
-export default blockNormalizer;
+export default BlockNormalizer;

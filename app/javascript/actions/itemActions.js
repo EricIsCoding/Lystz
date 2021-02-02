@@ -1,5 +1,5 @@
 import { csrf }from '../helpers/helpers';
-import itemNormalizer from '../helpers/normlaizer/itemNormalizer';
+import ItemNormalizer from '../helpers/normalizer/ItemNormalizer';
 
 export const itemAddSuccess = (item) => {
     return {
@@ -7,7 +7,6 @@ export const itemAddSuccess = (item) => {
         item
     }
 }
-
 
 export function addItem(item) {
     return dispatch => {
@@ -23,7 +22,7 @@ export function addItem(item) {
         .then(res => res.json())
         .then(json => {
             debugger;
-            dispatch(itemAddSuccess(itemNormalizer(json)))
+            dispatch(itemAddSuccess(ItemNormalizer(json.data)))
         })
     }
 }

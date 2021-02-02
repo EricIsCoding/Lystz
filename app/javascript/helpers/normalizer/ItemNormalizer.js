@@ -1,4 +1,4 @@
-const itemNormalizer = (item) => {
+const ItemNormalizer = (item) => {
     return {
         id: item.id,
         ...item.attributes,
@@ -7,4 +7,4 @@ const itemNormalizer = (item) => {
     }
 }
 
-export default itemNormalizer;
+export default ItemNormalizer;

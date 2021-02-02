@@ -1,6 +1,6 @@
 import { csrf }from '../helpers/helpers';
-import normalizer from '../helpers/normlaizer/normalizer'
-import vendorNormalizer from '../helpers/normlaizer/vendorNormalizer';
+import FetchNormalizer from '../helpers/normalizer/FetchNormalizer'
+import VendorNormalizer from '../helpers/normalizer/VendorNormalizer';
 
 export const beginFetchVendors = () => ({
     type: "FETCH_VENDORS"
@@ -26,7 +26,7 @@ export function fetchVendors() {
         return fetch('/api/vendors')
         .then(res => res.json())
         .then(json => {
-            dispatch(apiFetchSuccess(normalizer(json)))
+            dispatch(apiFetchSuccess(FetchNormalizer(json)))
         })
     }
 }
@@ -44,7 +44,8 @@ export function addVendor(vendor) {
         return fetch('/api/vendors', options)
         .then(res => res.json())
         .then(json => {
-            dispatch(vendorAddSuccess(vendorNormalizer(json)))
+            debugger;
+            dispatch(vendorAddSuccess(VendorNormalizer(json.data)))
         })
     }
 }

@@ -4,7 +4,7 @@ import { itemReducer } from './itemReducer'
 import { combineReducers } from 'redux'
 
 export const rootReducer = combineReducers({
-        block: blockReducer,
-        item: itemReducer,
-        vendor: vendorReducer
+        blocks: blockReducer,
+        items: itemReducer,
+        vendors: vendorReducer
 })
