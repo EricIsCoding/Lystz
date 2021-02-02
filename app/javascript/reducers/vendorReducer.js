@@ -8,7 +8,7 @@ export function vendorReducer(state = {
             }
         case "ADD_ITEM_SUCCESS":
             const addItemState = {...state}
-            addItemState[action.item.data.relationships.vendor.data.id].relationships.items.data = [...addItemState[action.item.data.relationships.vendor.data.id].relationships.items.data, itemData]
+            addItemState[`${action.item.vendorId}`].itemIds.push(action.item.id)
             return addItemState  
         case "ADD_VENDOR_SUCCESS":
             return {...state, [action.vendor.id]: {...action.vendor}}
