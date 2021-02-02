@@ -14,10 +14,8 @@ const normalizer = (json) => {
 
     json.included.forEach((element) => {
         if(element.type == "block"){
-            debugger;
             blocks[`${element.id}`] = blockNormalizer(element)
         } else if(element.type == "item") {
-            debugger;
             items[`${element.id}`] = itemNormalizer(element)
         }
     });

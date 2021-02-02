@@ -20,11 +20,11 @@ class Home extends Component {
     renderVendors() {
     return this.props.vendors.map(vendor => <VendorCard 
         handleClick={this.handleClick.bind(this)} 
-        key={vendor.data.id} 
-        id={vendor.data.id} 
-        name={vendor.data.name} 
-        website={vendor.data.website} 
-        blockIds={vendor.data.blockIds}/>
+        key={vendor.id} 
+        id={vendor.id} 
+        name={vendor.name} 
+        website={vendor.website} 
+        blockIds={vendor.blockIds}/>
         )
     }
 
@@ -45,14 +45,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+    debugger;
     if(state.vendors) {
-        let keys = Object.keys(state.vendors)
-        let mappedVendors = keys.map(key => {
-            return {
-                data: state.vendors[key]
-            }
-        })
-        return { vendors: mappedVendors }
+        let vendors = Object.values(state.vendors)
+        return { vendors }
     }
 }
 

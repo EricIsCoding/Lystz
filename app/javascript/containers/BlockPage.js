@@ -9,15 +9,16 @@ class BlockPage extends Component {
     
     renderBlocks() {
         return this.props.blocks.map(block => {
+        debugger;
         return <Block 
         key={block.id} 
         id={block.id} 
-        name={block.attributes.name} 
-        creator={block.attributes.creator}
-        vendorId={block.relationships.vendor.data.id} 
+        name={block.name} 
+        creator={block.creator}
+        vendorId={block.vendorId} 
         items={block.items}
         blockPage={true}
-        vendor={block.vendor}/>})
+        vendorName={block.vendorName}/>})
     }
 
     renderRows() {
@@ -45,15 +46,11 @@ class BlockPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const blocks = Object.values(state.block)  
-    const blocksWithItems = blocks.map(block => {       
-        block['vendor'] = state.vendor[block.relationships.vendor.data.id].attributes.name
-        return {...block, items: Object.values(filtered(state.item, childIds(block.relationships.items.data)))}
+    const blocks = Object.values(state.blocks).map(block => {       
+        block['vendorName'] = state.vendors[block.vendorId].name
+        return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })
-    
-    return {
-        blocks: blocksWithItems
-    }
+    return { blocks }
 }
 
 export default connect(mapStateToProps)(BlockPage);
