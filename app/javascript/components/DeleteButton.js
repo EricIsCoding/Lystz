@@ -26,9 +26,10 @@ const DeleteButton = (props) => {
     }
 
     const handleDelete = ( ) => {
-        props.deleteData(
-            data()
-        )}
+        if(window.confirm("Are you sure you want to delete?")){
+            props.deleteData( data() )
+        }
+    }
 
     return( 
         <Button 
