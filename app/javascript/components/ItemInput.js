@@ -28,7 +28,7 @@ class ItemInput extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        e.target.parentElement.parentElement.classList = 'collapse'
+        e.target.parentElement.parentElement.classList = 'collapse'     
         this.props.addItem(this.state)
         this.setState((prevState) => ({
                 name: "",

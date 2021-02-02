@@ -8,8 +8,7 @@ import { filtered, childIds } from '../helpers/helpers'
 class BlockPage extends Component {
     
     renderBlocks() {
-        return this.props.blocks.map(block => {
-        debugger;
+        return this.props.blocks.map(block => {      
         return <Block 
         key={block.id} 
         id={block.id} 

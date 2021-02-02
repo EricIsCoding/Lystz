@@ -20,8 +20,7 @@ export function addItem(item) {
           }
         return fetch('/api/items', options)
         .then(res => res.json())
-        .then(json => {
-            debugger;
+        .then(json => {          
             dispatch(itemAddSuccess(ItemNormalizer(json.data)))
         })
     }

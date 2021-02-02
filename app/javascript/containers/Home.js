@@ -44,8 +44,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    debugger;
+const mapStateToProps = (state) => {    
     if(state.vendors) {
         let vendors = Object.values(state.vendors)
         return { vendors }

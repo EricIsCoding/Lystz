@@ -43,8 +43,7 @@ export function addVendor(vendor) {
           }
         return fetch('/api/vendors', options)
         .then(res => res.json())
-        .then(json => {
-            debugger;
+        .then(json => {            
             dispatch(vendorAddSuccess(VendorNormalizer(json.data)))
         })
     }

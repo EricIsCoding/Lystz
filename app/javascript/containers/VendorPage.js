@@ -10,13 +10,12 @@ class VendorPage extends Component {
     
     renderBlocks() {
         return this.props.blocks.map(block => {
-        debugger;
         return <Block 
         key={block.id} 
         id={block.id} 
         name={block.name} 
         creator={block.creator}
-        vendorId={this.props.vendorId} 
+        vendorId={this.props.vendor.id} 
         items={block.items}/>})
     }
 
@@ -51,7 +50,6 @@ const mapStateToProps = (state, ownProps) => {
     const blocksWithItems = blocks.map(block => {
        return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })
-    debugger;
     return {
         vendor,
         blocks: blocksWithItems
