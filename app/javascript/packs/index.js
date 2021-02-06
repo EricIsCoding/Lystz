@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/App'
-
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import {configureStore} from '@reduxjs/toolkit'
 
+import App from '../components/App'
 import { rootReducer } from '../reducers/rootReducer'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 
-const composed = compose(applyMiddleware(thunk))
-
-const store = createStore(rootReducer, composed)
+const store = configureStore({
+  reducer: rootReducer
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
