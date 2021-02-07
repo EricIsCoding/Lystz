@@ -10,7 +10,6 @@ require 'faker'
 
 vendor_names = ["Target", "Trader Joes", "Costco", "Albertsons", "Ralphs", "Costco"]
 
-
 # Create Users
 user = [User.create(first_name: "Bob", last_name: "Test", email: "bob@fake.com", password: "pass1234", password_confirmation: "pass1234"), User.create(first_name: "Sarah", last_name: "Test", email: "sarah@fake.com", password: "pass1234", password_confirmation: "pass1234")]
 
@@ -35,7 +34,7 @@ end
     vendor = Vendor.all.sample(1).first
     Block.create(
         name: "Block #{i}",
-        creator: vendor.user.name,
+        creator: vendor.user.first_name,
         vendor: vendor
     )
 end
