@@ -8,40 +8,48 @@
 
 require 'faker'
 
-stores = ["Target", "Trader Joes", "Costco"]
+vendor_names = ["Target", "Trader Joes", "Costco", "Albertsons", "Ralphs", "Costco"]
 
-user = User.find(1)
 
-3.times.with_index do |i|
+# Create Users
+user = [User.create(first_name: "Bob", last_name: "Test", email: "bob@fake.com", password: "pass1234", password_confirmation: "pass1234"), User.create(first_name: "Sarah", last_name: "Test", email: "sarah@fake.com", password: "pass1234", password_confirmation: "pass1234")]
+
+# Create Vendors and Assign to Users
+vendor_names.count.times.with_index do |i|
+    #Give each User 3 Vendors
+    if (1..3).include?(i)
+        user = User.first
+    else
+        user = User.last
+    end
+
     Vendor.create(
-        name: "#{stores[i]}",
-        website: "#{stores[i]}.com",
-        user_id: user.id
+        name: "#{vendor_names[i]}",
+        website: "#{vendor_names[i]}.com",
+        user: user
     )
 end
 
-vendors = Vendor.all
-
-users = ["eric", "kate"]
-
-9.times.with_index do |i|
+# Create Blocks and assign to Vendors
+20.times.with_index do |i|
+    vendor = Vendor.all.sample(1).first
     Block.create(
         name: "Block #{i}",
-        creator: users.sample(1).first,
-        vendor: vendors.sample(1).first
+        creator: vendor.user.name,
+        vendor: vendor
     )
 end
 
-blocks = Block.all
+#Create Items and assign to Blocks
+50.times do 
+    block = Block.all.sample(1).first
 
-50.times.with_index do |i|
-    block = blocks.sample(1).first
     Item.create(
         name: "#{Faker::Food.dish}",
         brand: "#{Faker::Lorem.word}",
         description: "#{Faker::Lorem.sentence}",
         quantity: rand(1...30),
-        active: [true, false].sample(1),
+        active: true,
         block: block,
         vendor: block.vendor
     )
