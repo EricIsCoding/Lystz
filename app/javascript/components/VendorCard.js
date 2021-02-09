@@ -1,6 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
+import slugify from 'react-slugify'
+
 import DeleteButton from './DeleteButton'
 
 const VendorCard = (props) => {
@@ -12,7 +15,7 @@ const VendorCard = (props) => {
                 <Card.Text>
                 Number of Blocks: {props.blockIds.length}
                 </Card.Text>
-                <Button onClick={props.handleClick} name={props.name} id={props.id}variant="dark">View Blocks!</Button>
+                <Button as={Link} to={`/${props.id}/${slugify(props.name)}/blocks`} variant="dark">View Blocks!</Button>
                 <DeleteButton type="vendor" id={props.id} blockIds={props.blockIds}/>
             </Card.Body>
         </Card>

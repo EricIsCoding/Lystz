@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+
 import VendorCard from '../components/VendorCard'
 import { fetchVendors } from '../actions/vendorActions'
 import VendorInput  from '../components/VendorInput'
@@ -7,14 +8,9 @@ import VendorInput  from '../components/VendorInput'
 class Home extends Component {
 
     componentDidMount() {
-        this.props.fetchVendors()
-    }
-    
-    handleClick(event) {    
-        this.props.history.push({
-            pathname: `/${event.target.name}/blocks`,
-            state: {id: event.target.id}
-            })
+        if(this.props.vendors.length == 0) {
+            this.props.fetchVendors()
+        }
     }
 
     renderVendors() {
@@ -44,7 +40,7 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (state) => {    
+const mapStateToProps = (state) => {   
     if(state.vendors) {
         let vendors = Object.values(state.vendors)
         return { vendors }
