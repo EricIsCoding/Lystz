@@ -44,11 +44,10 @@ class BlockPage extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const blocks = Object.values(state.blocks).map(block => {       
-        block['vendorName'] = state.vendors[block.vendorId].name
+const mapStateToProps = (state) => {
+    let blocks = Object.values(state.blocks).map(block => {       
         return {...block, items: Object.values(filtered(state.items, block.itemIds))}
-    })
+    }).sort((a, b) => {a.vendorName < b.vendorName ? -1 : 1})
     return { blocks }
 }
 
