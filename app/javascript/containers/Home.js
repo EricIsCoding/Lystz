@@ -15,7 +15,6 @@ class Home extends Component {
 
     renderVendors() {
     return this.props.vendors.map(vendor => <VendorCard 
-        handleClick={this.handleClick.bind(this)} 
         key={vendor.id} 
         id={vendor.id} 
         name={vendor.name} 
