@@ -53,6 +53,7 @@ gem "react-rails", "~> 2.6"
 
 #User authentication
 gem "devise", "~> 4.7"
+gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 
 #Implements a CORS policy
 gem "rack-cors", "~> 1.1"
