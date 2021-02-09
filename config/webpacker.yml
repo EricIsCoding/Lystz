@@ -62,7 +62,7 @@ development:
     host: localhost
     port: 3001
     public: localhost:3001
-    hmr: false
+    hmr: true
     # Inline should be set to true if using HMR
     inline: true
     overlay: true

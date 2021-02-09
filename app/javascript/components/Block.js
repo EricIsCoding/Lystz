@@ -42,11 +42,11 @@ const Block = (props) => {
     }
 
     return(
-        <Col lg={4}>
+     <Col lg={4} className="p-2">
         <Accordion>
-        <Card>
+        <Card className="p-2">
             <h5>{title()}</h5>
-            {(props.blockPage !== true) ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/> : ""}
+            {(props.blockPage !== true) ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId} /> : ""}
         </Card>
            {renderItems()}
            {itemInput()}

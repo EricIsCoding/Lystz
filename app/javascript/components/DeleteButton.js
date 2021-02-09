@@ -33,7 +33,8 @@ const DeleteButton = (props) => {
 
     return( 
         <Button 
-        variant="outline-danger" 
+        variant="outline-danger"
+        className="w-25"
         size="sm"
         onClick={handleDelete}
         >Delete</Button>

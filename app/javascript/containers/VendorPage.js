@@ -15,7 +15,7 @@ class VendorPage extends Component {
         id={block.id} 
         name={block.name} 
         creator={block.creator}
-        vendorId={this.props.vendor.id} 
+        vendorId={block.vendorId} 
         items={block.items}/>})
     }
 
@@ -44,15 +44,15 @@ class VendorPage extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const vendor = Object.values(filtered(state.vendors, [ownProps.location.state.id]))[0]
-    const blocks = Object.values(filtered(state.blocks, vendor.blockIds))
-    const blocksWithItems = blocks.map(block => {
+const mapStateToProps = (state, props) => {
+    
+    let vendor = Object.values(filtered(state.vendors, [props.match.params.id]))[0]
+    let blocks = Object.values(filtered(state.blocks, vendor.blockIds)).map(block => {
        return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })
     return {
         vendor,
-        blocks: blocksWithItems
+        blocks
     }
 }
 

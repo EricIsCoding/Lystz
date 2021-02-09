@@ -25,25 +25,25 @@ const Navigation =  (props) => {
  
     return(
       <Router>
-      <Navbar bg="dark" variant="dark" expand="sm" >
-        <Navbar.Brand as={Link} to="/">Lystz</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-          <Route render={({ history}) => (<Nav.Link onClick={() => { history.push('/blocks') }}>All Blocks!</Nav.Link>)} />
+        <Navbar bg="dark" variant="dark" expand="sm" >
+          <Navbar.Brand as={Link} to="/">Lystz</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+            <Nav.Link as={Link} to="/blocks">All Blocks!</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+          <Nav>
+            <Nav.Link onClick={sign_out}>Sign Out</Nav.Link>
           </Nav>
-        </Navbar.Collapse>
-        <Nav>
-          <Nav.Link onClick={sign_out}>Sign Out</Nav.Link>
-        </Nav>
-      </Navbar>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/blocks" component={BlockPage}/>
-        <Route exact path="/:vendor/blocks" component={VendorPage}/>
-        <Route render={() => <Redirect to={{pathname: "/"}} />} />
-      </Switch>
-  </Router>
+        </Navbar>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/blocks" component={BlockPage}/>
+          <Route exact path="/:id/:slug/blocks" component={VendorPage}/>
+          <Route render={() => <Redirect to={{pathname: "/"}} />} />
+        </Switch>
+      </Router>
     )
 }
 
