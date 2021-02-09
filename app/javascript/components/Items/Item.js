@@ -1,7 +1,7 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
-import DeleteButton  from './DeleteButton'
+import DeleteButton  from '../DeleteButton'
 
 const Item = (props) => {
 

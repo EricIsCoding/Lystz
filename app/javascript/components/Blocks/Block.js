@@ -1,10 +1,11 @@
 import React from 'react';
-import Item from './Item';
 import Accordion from 'react-bootstrap/Accordion';
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import ItemInput from './ItemInput'
-import DeleteButton from './DeleteButton'
+
+import Item from '../Items/Item';
+import ItemInput from '../Items/ItemInput'
+import DeleteButton from '../DeleteButton'
 
 const Block = (props) => {
 

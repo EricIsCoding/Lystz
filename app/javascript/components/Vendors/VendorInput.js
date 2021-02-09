@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
-import { addVendor } from '../actions/vendorActions'
+import { addVendor } from '../../actions/vendorActions'
 
 class VendorInput extends Component {
     constructor(props) {

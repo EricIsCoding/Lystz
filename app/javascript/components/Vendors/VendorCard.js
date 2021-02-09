@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import slugify from 'react-slugify'
 
-import DeleteButton from './DeleteButton'
+import DeleteButton from '../DeleteButton'
 
 const VendorCard = (props) => {
      return(

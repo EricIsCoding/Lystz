@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap'
 
-import VendorCard from '../components/VendorCard'
+import VendorCard from '../components/Vendors/VendorCard'
+import VendorInput  from '../components/Vendors/VendorInput'
 import { fetchVendors } from '../actions/vendorActions'
-import VendorInput  from '../components/VendorInput'
 
 class Home extends Component {
 
@@ -33,8 +34,10 @@ class Home extends Component {
             )
         } else {
             return (
-                <img alt="loading-gif" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
-           )
+                <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+                </Spinner>          
+            )
         }
     }
 }

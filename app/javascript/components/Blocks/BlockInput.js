@@ -4,7 +4,8 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
-import { addBlock } from '../actions/blockActions'
+
+import { addBlock } from '../../actions/blockActions'
 
 class BlockInput extends Component {
     constructor(props) {

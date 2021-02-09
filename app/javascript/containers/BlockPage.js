@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Block from '../components/Block'
 import { connect } from 'react-redux'
-import { filtered, childIds } from '../helpers/helpers'
+import { filtered } from '../helpers/helpers'
+
+import Block from '../components/Blocks/Block'
 
 class BlockPage extends Component {
     

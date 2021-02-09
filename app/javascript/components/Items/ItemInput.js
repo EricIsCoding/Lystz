@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
-import { addItem } from '../actions/itemActions'
+import { addItem } from '../../actions/itemActions'
 
 class ItemInput extends Component {
     constructor(props) {

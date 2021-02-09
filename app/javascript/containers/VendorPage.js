@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Block from '../components/Block'
-import { connect } from 'react-redux'
+
+import Block from '../components/Blocks/Block'
 import { filtered } from '../helpers/helpers'
-import BlockInput from '../components/BlockInput'
+import BlockInput from '../components/Blocks/BlockInput'
 
 class VendorPage extends Component {
     
