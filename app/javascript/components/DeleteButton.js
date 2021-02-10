@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import {connect} from 'react-redux'
 import { deleteData } from '../actions/deleteAction'
+import ConfirmationModal from './ConfirmationModal'
 
 const DeleteButton = (props) => {
 
@@ -26,18 +27,11 @@ const DeleteButton = (props) => {
     }
 
     const handleDelete = ( ) => {
-        if(window.confirm("Are you sure you want to delete?")){
-            props.deleteData( data() )
-        }
+        props.deleteData( data() )        
     }
 
     return( 
-        <Button 
-        variant="outline-danger"
-        className="w-25"
-        size="sm"
-        onClick={handleDelete}
-        >Delete</Button>
+     <ConfirmationModal type="delete" parentClick={handleDelete}/>
     )
 }
 
