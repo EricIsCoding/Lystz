@@ -1,30 +1,17 @@
 import React from 'react'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom'
 
 import Home from '../../containers/Home'
 import VendorPage from '../../containers/VendorPage'
 import BlockPage from '../../containers/BlockPage'
-import { csrf } from '../../helpers/helpers'
+import Dropdown from './Dropdown'
+import OptionsDropdown from './OptionsDropdown'
+
 
  
 const Navigation =  (props) => {
-
-  // use Devise route to log the current user out
-  const sign_out = () => {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'X-CSRF-TOKEN': csrf
-      }
-    }
-    fetch('/users/sign_out', options)
-      .then(() => {
-        location.reload();
-      })
-  }
   
- 
   return(
     <Router>
       <Navbar bg="dark" variant="dark" expand="sm" >
@@ -36,7 +23,7 @@ const Navigation =  (props) => {
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          <Nav.Link onClick={sign_out}>Sign Out</Nav.Link>
+          { <OptionsDropdown /> }
         </Nav>
       </Navbar>
       <Switch>
