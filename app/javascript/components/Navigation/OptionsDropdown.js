@@ -16,6 +16,8 @@ const OptionsDropdown = () => {
             }
             fetch('/users/sign_out', options)
             .then(() => {
+                // Clear persisted data from localstorage and reload
+                localStorage.clear();
                 location.reload();
             })
     }
