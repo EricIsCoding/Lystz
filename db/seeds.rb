@@ -35,7 +35,8 @@ end
     Block.create(
         name: "Block #{i}",
         creator: vendor.user.first_name,
-        vendor: vendor
+        vendor: vendor,
+        share: false
     )
 end
 
