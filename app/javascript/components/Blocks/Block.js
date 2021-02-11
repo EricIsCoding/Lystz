@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 
 import Item from '../Items/Item';
 import ItemInput from '../Items/ItemInput'
-import DeleteButton from '../DeleteButton'
+import BlockTitle from './BlockTitle';
 
 const Block = (props) => {
 
@@ -25,10 +25,10 @@ const Block = (props) => {
     }
 
     const title = () => {
-        if(props.blockPage === true) {
-           return `${props.name} : ${props.vendorName}`
+        if(!props.blockPage) {
+            return <BlockTitle id={props.id} name={props.name} vendorId={props.vendorId}/>
         } else {
-            return `${props.name}`
+            return <h5>{props.name} : {props.vendorName}</h5>
         }
     }
 
@@ -46,8 +46,7 @@ const Block = (props) => {
      <Col lg={4} className="p-2">
         <Accordion>
         <Card className="p-2">
-            <h5>{title()}</h5>
-            {(props.blockPage !== true) ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId} /> : ""}
+            {title()}
         </Card>
            {renderItems()}
            {itemInput()}
