@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_044044) do
+ActiveRecord::Schema.define(version: 2021_02_11_044911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2021_02_11_044044) do
     t.boolean "active"
     t.index ["block_id"], name: "index_items_on_block_id"
     t.index ["vendor_id"], name: "index_items_on_vendor_id"
+  end
+
+  create_table "shared_blocks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "block_id", null: false
+    t.index ["block_id"], name: "index_shared_blocks_on_block_id"
+    t.index ["user_id"], name: "index_shared_blocks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +73,6 @@ ActiveRecord::Schema.define(version: 2021_02_11_044044) do
   add_foreign_key "blocks", "vendors"
   add_foreign_key "items", "blocks"
   add_foreign_key "items", "vendors"
+  add_foreign_key "shared_blocks", "blocks"
+  add_foreign_key "shared_blocks", "users"
 end
