@@ -25,7 +25,7 @@ const ConfirmationModal = (props) => {
         } else {
             return <Button 
             variant="outline-danger"
-            className="w-25 m-2"
+            className="w-20 m-2"
             size="sm"
             onClick={handleShow}
             >Delete</Button>
