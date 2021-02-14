@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :items
     resources :blocks
     resources :vendors
+    resources :groups
   end
 
   #default path when entering site

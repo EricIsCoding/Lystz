@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :vendors, :dependent => :destroy 
-  
-  has_many :shared_blocks
-  has_many :blocks, through: :shared_blocks
+  has_many :blocks
+
+  belongs_to :group, optional: true
+
+  scope :group_added, -> { where(group_invite: "accepted")}
 end

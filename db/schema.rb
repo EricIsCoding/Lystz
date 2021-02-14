@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_044911) do
+ActiveRecord::Schema.define(version: 2021_02_14_002058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blocks", force: :cascade do |t|
     t.string "name"
-    t.string "creator"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "vendor_id"
     t.boolean "share"
+    t.bigint "user_id"
+    t.bigint "group_id"
     t.index ["vendor_id"], name: "index_blocks_on_vendor_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "group_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -39,13 +46,6 @@ ActiveRecord::Schema.define(version: 2021_02_11_044911) do
     t.index ["vendor_id"], name: "index_items_on_vendor_id"
   end
 
-  create_table "shared_blocks", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "block_id", null: false
-    t.index ["block_id"], name: "index_shared_blocks_on_block_id"
-    t.index ["user_id"], name: "index_shared_blocks_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,7 +57,10 @@ ActiveRecord::Schema.define(version: 2021_02_11_044911) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id"
+    t.string "group_invite", default: "none"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -73,6 +76,5 @@ ActiveRecord::Schema.define(version: 2021_02_11_044911) do
   add_foreign_key "blocks", "vendors"
   add_foreign_key "items", "blocks"
   add_foreign_key "items", "vendors"
-  add_foreign_key "shared_blocks", "blocks"
-  add_foreign_key "shared_blocks", "users"
+  add_foreign_key "users", "groups"
 end
