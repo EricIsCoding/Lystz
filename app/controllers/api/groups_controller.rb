@@ -4,9 +4,7 @@ class API::GroupsController < ApplicationController
   # GET /groups
   def index
     @groups = Group.all
-
-    binding.remote_pry
-
+    
     render json: @groups
   end
 
