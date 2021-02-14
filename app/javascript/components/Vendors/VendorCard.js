@@ -13,9 +13,9 @@ const VendorCard = (props) => {
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.website}</Card.Subtitle>
                 <Card.Text>
-                Number of Blocks: {props.blockIds.length}
+                Number of Sections: {props.blockIds.length}
                 </Card.Text>
-                <Button as={Link} to={`/${props.id}/${slugify(props.name)}/blocks`} variant="dark">View Blocks!</Button>
+                <Button as={Link} to={`/${props.id}/${slugify(props.name)}/blocks`} variant="dark">View Sections!</Button>
                 <DeleteButton type="vendor" id={props.id} blockIds={props.blockIds}/>
             </Card.Body>
         </Card>
