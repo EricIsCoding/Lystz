@@ -1,34 +1,24 @@
-export const blockReducer = (state = {
-}, action) => {
+import produce from 'immer'
+
+export const blockReducer = produce((blocks, action) => {
     switch (action.type) {
         case "API_FETCH_SUCCESS":
-          return {
-              ...state,
-              ...action.data.blocks
-          }
+          return action.data.blocks
         case "ADD_ITEM_SUCCESS":
-            let addItemState = {...state}
-            addItemState[`${action.item.blockId}`].itemIds.push(action.item.id)
-            return addItemState
+            blocks[`${action.item.blockId}`].itemIds.push(action.item.id)
+            return blocks
         case "ADD_BLOCK_SUCCESS":
-            return {...state, [action.block.id]: {...action.block}}
+            blocks[action.block.id] = action.block
+            return blocks
         case "REMOVE_BLOCK":
-            let newState = {...state}
-            delete newState[action.deleteData.id]
-            return newState
+            delete blocks[action.deleteData.id]
+            return blocks
         case "REMOVE_ITEM":
-            let removeItemState = {...state}
-            removeItemState[action.deleteData.blockId].itemIds.filter(id => id !== action.deleteData.id)
-            return removeItemState
-        case "REMOVE_VENDOR":
-            let removeVendorState = {...state}
-            action.deleteData.blockIds.forEach(id => delete removeVendorState[id])
-            return removeVendorState
+            blocks[action.deleteData.blockId].itemIds.filter(id => id !== action.deleteData.id)
+            return blocks
         case "BLOCK_UPDATE_SUCCESS":
-            let updateState = {...state}
-            updateState[action.block.id] = {...updateState[action.block.id], ...action.block.data}
-            return updateState
-        default:
-            return state
+            let updateBlock = blocks[action.block.id]
+            updateBlock = {...updateBlock, ...action.block}
+            return blocks
     }
-}
+}, {})

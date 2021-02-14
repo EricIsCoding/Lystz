@@ -1,36 +1,30 @@
-export function vendorReducer(state = {
-}, action) {
+import produce from 'immer'
+
+export const vendorReducer = produce((vendors, action) => {
     switch (action.type) {
         case "API_FETCH_SUCCESS":
-            return {
-                ...state,
-                ...action.data.vendors
-            }
+            vendors = action.data.vendors
+            return vendors
         case "ADD_ITEM_SUCCESS":
-            const addItemState = {...state}
-            addItemState[`${action.item.vendorId}`].itemIds.push(action.item.id)
-            return addItemState  
+            vendors[action.item.vendorId].itemIds.push(action.item.id)
+            return vendors  
         case "ADD_VENDOR_SUCCESS":
-            return {...state, [action.vendor.id]: {...action.vendor}}
+            vendors[action.vendor.id] = action.vendor
+            return vendors
         case "ADD_BLOCK_SUCCESS":
-            const addBlockState = {...state}
-            addBlockState[`${action.block.vendorId}`].blockIds.push(action.block.id)
-            return addBlockState
+            vendors[action.block.vendorId].blockIds.push(action.block.id)
+            return vendors
         case "REMOVE_VENDOR":
-            const newState = {...state}
-            delete newState[action.deleteData.id]
-            return newState
+            delete vendors[action.deleteData.id]
+            return vendors
         case "REMOVE_ITEM":
-            const removeItemState = {...state}
-            removeItemState[action.deleteData.vendorId].itemIds.filter(id  => id !== action.deleteData.id)
-            return removeItemState
+            vendors[action.deleteData.vendorId].itemIds.filter(id  => id !== action.deleteData.id)
+            return vendors
         case "REMOVE_BLOCK":
-            const removeBlockState = {...state}
-            return removeBlockState
+            vendors[action.deleteData.vendorId].itemIds.filter(id  => id !== action.deleteData.id)
+            return vendors
         case "UPDATE_VENDOR":
             state = action.data
             return state
-        default:
-            return state
     }
-}
+}, {})

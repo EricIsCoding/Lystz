@@ -1,21 +1,15 @@
-export function groupReducer(state = {
-}, action) {
+import produce from 'immer'
+
+export const groupReducer = produce((group, action)  => {
     switch (action.type) {
         case "GROUP_FETCH_SUCCESS":
-          return {
-              ...state,
-              ...action.data.group
-          }
+          return action.data.group
         case "ADD_GROUP_SUCCESS":
-            const addItemState = {...state, [action.item.id]: {...action.item}}
-            return addItemState
-        case "REMOVE_GROUP":
-            const newState = {...state}          
-            delete newState[action.deleteData.id]
-            return newState
+            return action.group
+        case "REMOVE_GROUP":       
+            return {}
         case "UPDATE_GROUP":
-            return state
-        default:
+            group = action.group
             return state
     }
-}
+}, {})

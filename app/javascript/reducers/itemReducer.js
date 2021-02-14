@@ -1,23 +1,17 @@
-export function itemReducer(state = {
+import produce from 'immer'
 
-}, action) {
+export const itemReducer = produce((items, action) => {
     switch (action.type) {
         case "API_FETCH_SUCCESS":
-          return {
-              ...state,
-              ...action.data.items
-          }
+          return action.data.items
         case "ADD_ITEM_SUCCESS":
-            const addItemState = {...state, [action.item.id]: {...action.item}}
-            return addItemState
-        case "REMOVE_ITEM":
-            const newState = {...state}          
-            delete newState[action.deleteData.id]
-            return newState
+            items[action.item.id] = action.item
+            return items
+        case "REMOVE_ITEM":       
+            delete items[action.deleteData.id]
+            return items
         case "UPDATE_ITEM":
-            state = action.data
-            return state
-        default:
-            return state
+            items[action.item.id] = action.item
+            return items
     }
-}
+}, {})
