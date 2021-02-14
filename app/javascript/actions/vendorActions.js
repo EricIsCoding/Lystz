@@ -13,7 +13,7 @@ export const apiFetchSuccess = (data) => {
     }
 }
 
-export const vendorAddSuccess = (vendor) => {
+export const addVendorSuccess = (vendor) => {
     return{
         type: "ADD_VENDOR_SUCCESS",
         vendor
@@ -33,7 +33,7 @@ export function fetchVendors() {
 
 export function addVendor(vendor) {
     return dispatch => {
-        const options = {
+        let options = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export function addVendor(vendor) {
         return fetch('/api/vendors', options)
         .then(res => res.json())
         .then(json => {            
-            dispatch(vendorAddSuccess(VendorNormalizer(json.data)))
+            dispatch(addVendorSuccess(VendorNormalizer(json.data)))
         })
     }
 }
