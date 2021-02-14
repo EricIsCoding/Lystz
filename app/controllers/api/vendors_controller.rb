@@ -6,7 +6,11 @@ class API::VendorsController < ApplicationController
     @vendors = Vendor.all.filter{|vendor| vendor.user_id == current_user.id}
     options = {}
     options[:include] = [:blocks, :items]
-    render json: VendorSerializer.new(@vendors, options).serializable_hash.to_json
+    fetchHash = {
+      user: UserSerializer.new(current_user).serializable_hash,
+      vendors: VendorSerializer.new(@vendors, options).serializable_hash
+    }
+    render json: fetchHash.to_json
   end
 
   # GET /vendors/1
@@ -51,6 +55,7 @@ class API::VendorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vendor_params
-      params.require(:vendor).permit(:name, :website, :user_id)
+      binding.remote_pry
+      params.require(:vendor).permit(:name, :website)
     end
 end
