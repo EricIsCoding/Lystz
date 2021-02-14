@@ -3,7 +3,7 @@ class API::BlocksController < ApplicationController
 
   # GET /blocks
   def index
-    @blocks = Block.all
+    @blocks = Block.all.filter(block => block.creator = current_user)
 
     render json: @blocks
   end
@@ -16,6 +16,8 @@ class API::BlocksController < ApplicationController
   # POST /blocks
   def create
     @block = Block.new(block_params)
+
+    @block.user = current_user
 
     if @block.save
       render json: BlockSerializer.new(@block).serializable_hash.to_json
@@ -46,6 +48,6 @@ class API::BlocksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def block_params
-      params.require(:block).permit(:name, :creator, :vendor_id)
+      params.require(:block).permit(:name, :user, :vendor_id, :share)
     end
 end
