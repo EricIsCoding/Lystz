@@ -1,7 +1,6 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
 
 import Item from '../Items/Item';
 import ItemInput from '../Items/ItemInput'
@@ -24,14 +23,6 @@ const Block = (props) => {
         }) 
     }
 
-    const title = () => {
-        if(!props.blockPage) {
-            return <BlockTitle id={props.id} name={props.name} vendorId={props.vendorId}/>
-        } else {
-            return <h5>{props.name} : {props.vendorName}</h5>
-        }
-    }
-
     const itemInput = () => {
         if (!props.blockPage) {
             return <ItemInput 
@@ -43,13 +34,11 @@ const Block = (props) => {
     }
 
     return(
-     <Col lg={4} className="p-2">
+     <Col lg={4} className="p-1">
         <Accordion>
-        <Card className="p-2">
-            {title()}
-        </Card>
-           {renderItems()}
-           {itemInput()}
+            <BlockTitle id={props.id} name={props.name} vendorId={props.vendorId} vendorName={props.vendorName} blockPage={props.blockPage} share={props.share}/>  
+            {renderItems()}
+            {itemInput()}
         </Accordion>
       </Col>
     )

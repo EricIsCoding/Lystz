@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import {connect} from 'react-redux'
+
 import { deleteData } from '../actions/deleteAction'
 import ConfirmationModal from './ConfirmationModal'
 
