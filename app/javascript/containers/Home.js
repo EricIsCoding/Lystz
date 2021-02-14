@@ -5,17 +5,18 @@ import { Spinner } from 'react-bootstrap'
 import VendorCard from '../components/Vendors/VendorCard'
 import VendorInput  from '../components/Vendors/VendorInput'
 import { fetchVendors } from '../actions/vendorActions'
+import GroupInput from "../components/Groups/GroupInput";
 
 class Home extends Component {
 
     componentDidMount() {
-        if(this.props.vendors.length == 0) {
+        if(this.props.vendorsArray?.length == 0) {
             this.props.fetchVendors()
         }
     }
 
     renderVendors() {
-    return this.props.vendors.map(vendor => <VendorCard 
+    return this.props.vendorsArray.map(vendor => <VendorCard 
         key={vendor.id} 
         id={vendor.id} 
         name={vendor.name} 
@@ -25,11 +26,12 @@ class Home extends Component {
     }
 
     render() {
-        if(this.props.vendors && this.props.vendors.count !== 0) {
+        if(this.props.vendorsArray && this.props.vendorsArray.count !== 0) {
            return(
             <div>
                 {this.renderVendors()}
                 <VendorInput />
+                <GroupInput />
             </div>
             )
         } else {
@@ -44,8 +46,13 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {   
     if(state.vendors) {
-        let vendors = Object.values(state.vendors)
-        return { vendors }
+        let homeVendors = {...state.vendors}
+        let vendorsArray = Object.values(homeVendors)
+        debugger;
+        return {     
+            vendorsArray,
+            user: {...state.user}
+        }
     }
 }
 
