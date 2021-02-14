@@ -22,35 +22,32 @@ vendor_names.count.times.with_index do |i|
         user = User.last
     end
 
-    Vendor.create(
+    vendor = Vendor.create(
         name: "#{vendor_names[i]}",
         website: "#{vendor_names[i]}.com",
         user: user
     )
-end
 
-# Create Blocks and assign to Vendors
-20.times.with_index do |i|
-    vendor = Vendor.all.sample(1).first
-    Block.create(
-        name: "Block #{i}",
-        creator: vendor.user.first_name,
-        vendor: vendor,
-        share: false
-    )
-end
+    # Create Blocks and assign to Vendors
+    3.times  do
+        block = Block.create(
+            name: Faker::Commerce.department,
+            vendor: vendor,
+            share: [false, true].sample(1).first, 
+            user_id: vendor.user.id
+        )
 
-#Create Items and assign to Blocks
-50.times do 
-    block = Block.all.sample(1).first
-
-    Item.create(
-        name: "#{Faker::Food.dish}",
-        brand: "#{Faker::Lorem.word}",
-        description: "#{Faker::Lorem.sentence}",
-        quantity: rand(1...30),
-        active: true,
-        block: block,
-        vendor: block.vendor
-    )
+        #Create Items and assign to Blocks
+        5.times do 
+            Item.create(
+                name: Faker::Commerce.product_name,
+                brand: "#{Faker::Lorem.word}",
+                description: "#{Faker::Lorem.sentence}",
+                quantity: rand(1..30),
+                active: true,
+                block: block,
+                vendor: vendor
+            )
+        end
+    end
 end
