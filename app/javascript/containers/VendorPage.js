@@ -17,13 +17,16 @@ class VendorPage extends Component {
         name={block.name} 
         creator={block.creator}
         vendorId={block.vendorId} 
-        items={block.items}/>})
+        items={block.items}
+        vendorName={block.vendorName}
+        share={block.share}/>
+    })
     }
 
     renderRows() {
         const cols = this.renderBlocks()
 
-        const noRows =  Math.ceil(cols.length / 3);
+        const noRows =  Math.ceil(cols.length / 4);
      
         const rows = Array.from(Array(noRows)).map((n, i) =>(
            <Row key={i}>
@@ -46,8 +49,7 @@ class VendorPage extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-    
-    let vendor = Object.values(filtered(state.vendors, [props.match.params.id]))[0]
+    let vendor = Object.values(filtered({...state.vendors}, [props.match.params.id]))[0]
     let blocks = Object.values(filtered(state.blocks, vendor.blockIds)).map(block => {
        return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })
