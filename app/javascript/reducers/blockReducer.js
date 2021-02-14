@@ -25,7 +25,9 @@ export const blockReducer = (state = {
             action.deleteData.blockIds.forEach(id => delete removeVendorState[id])
             return removeVendorState
         case "BLOCK_UPDATE_SUCCESS":
-            return {...state, [action.block.id]: {...action.block}}
+            let updateState = {...state}
+            updateState[action.block.id] = {...updateState[action.block.id], ...action.block.data}
+            return updateState
         default:
             return state
     }
