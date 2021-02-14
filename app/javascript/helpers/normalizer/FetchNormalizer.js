@@ -4,13 +4,13 @@ import VendorNormalizer from './VendorNormalizer'
 
 const FetchNormalizer = (json) => {
 
-    const blocks = {}, items = {},  vendors = {}
+    const blocks = {}, items = {},  vendors = {}, user = { ...json.user.data.attributes }
 
-    json.data.forEach((vendor) => {
+    json.vendors.data.forEach((vendor) => {
         vendors[`${vendor.id}`] = VendorNormalizer(vendor)
     })
 
-    json.included.forEach((element) => {
+    json.vendors.included.forEach((element) => {
         if(element.type == "block"){
             blocks[`${element.id}`] = BlockNormalizer(element)
         } else if(element.type == "item") {
@@ -21,7 +21,8 @@ const FetchNormalizer = (json) => {
     return {
         vendors,
         items,
-        blocks
+        blocks,
+        user
     }
 }
 
