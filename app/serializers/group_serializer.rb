@@ -13,4 +13,10 @@ class GroupSerializer
       BlockSerializer.new(block, {include: [:items]}).serializable_hash
     end
   end
+
+  attribute :blockIds do |group|
+    group.blocks.shared.map do |block|
+      "#{block.id}"
+    end
+  end
 end
