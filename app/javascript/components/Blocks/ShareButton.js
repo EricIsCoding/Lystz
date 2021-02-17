@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import { updateBlock } from '../../actions/blockActions'
+import { increaseSharedCount, decreaseSharedCount } from '../../actions/userAction'
 
 const ShareButton = (props) => {
     const [checked, setChecked] = useState(props.share);
@@ -16,6 +17,11 @@ const ShareButton = (props) => {
         }
         setChecked(event.currentTarget.checked)
         dispatch(updateBlock(block))
+        if(block.data.share) {
+            dispatch(increaseSharedCount())
+        } else {
+            dispatch(decreaseSharedCount())
+        }
     }
 
     return(
