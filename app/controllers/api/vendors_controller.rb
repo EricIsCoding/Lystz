@@ -55,7 +55,6 @@ class API::VendorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vendor_params
-      binding.remote_pry
       params.require(:vendor).permit(:name, :website)
     end
 end
