@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :blocks
 
   belongs_to :group, optional: true
+  has_one :group_invite
 
   scope :group_added, -> { where(group_invite: "accepted")}
 end
