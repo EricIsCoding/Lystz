@@ -23,7 +23,7 @@ const OptionsDropdown = () => {
     }
     return(
         <NavDropdown title="Options" id="dark-nav-dropdown" drop="left">
-            <ConfirmationModal parentClick={sign_out} type="sign_out"/>
+            <ConfirmationModal parentClick={sign_out} type="sign out"/>
         </NavDropdown>
     )
 }
