@@ -1,4 +1,4 @@
-export const filtered = (objects, keys) => {
+export const filtered = (objects, keys) => { 
   if(objects){
   return Object.keys(objects)
   .filter(key => keys.includes(key))
@@ -11,10 +11,4 @@ export const filtered = (objects, keys) => {
   }
 };
 
-
-
 export const csrf = document.querySelector('[name=csrf-token]').content;
-
-export const normalizer = (json) => {
-  return {}
-}
