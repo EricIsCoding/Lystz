@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap';
 
-import VendorCard from '../components/Vendors/VendorCard'
-import VendorInput  from '../components/Vendors/VendorInput'
-import { fetchVendors } from '../actions/vendorActions'
+import { fetchVendors } from '../actions/vendorActions';
+import VendorCard from '../components/Vendors/VendorCard';
+import VendorInput  from '../components/Vendors/VendorInput';
+import GroupCard from "../components/Groups/GroupCard";
 import GroupInput from "../components/Groups/GroupInput";
 
 class Home extends Component {
@@ -25,21 +26,30 @@ class Home extends Component {
         )
     }
 
+    renderGroup() {
+        if(this.props.user.group?.invite){ 
+           return <GroupCard invite={this.props.user.group.invite} />
+        } else if(this.props.user.group?.sharedBlockCount){
+            return <GroupCard group={this.props.user.group} />
+        } else {
+            return <GroupInput />
+        }
+    }
+
+
     render() {
         if(this.props.vendorsArray && this.props.vendorsArray.count !== 0) {
-           return(
-            <div>
+           return <>
                 {this.renderVendors()}
                 <VendorInput />
-                <GroupInput />
-            </div>
-            )
+                {this.renderGroup()}
+            </>
         } else {
-            return (
+            return <>
                 <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>
                 </Spinner>          
-            )
+            </>
         }
     }
 }
@@ -48,7 +58,6 @@ const mapStateToProps = (state) => {
     if(state.vendors) {
         let homeVendors = {...state.vendors}
         let vendorsArray = Object.values(homeVendors)
-        debugger;
         return {     
             vendorsArray,
             user: {...state.user}
