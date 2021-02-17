@@ -4,7 +4,7 @@ import VendorNormalizer from './VendorNormalizer'
 
 const FetchNormalizer = (json) => {
 
-    const blocks = {}, items = {},  vendors = {}, user = { ...json.user.data.attributes }
+    const blocks = {}, items = {},  vendors = {}
 
     json.vendors.data.forEach((vendor) => {
         vendors[`${vendor.id}`] = VendorNormalizer(vendor)
@@ -18,6 +18,8 @@ const FetchNormalizer = (json) => {
         }
     });
 
+    const user = {...json.user.data.attributes}
+    
     return {
         vendors,
         items,
