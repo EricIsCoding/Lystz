@@ -28,11 +28,10 @@ class BlockInput extends Component {
         e.preventDefault();
         e.target.parentElement.parentElement.classList = 'collapse'
         this.props.addBlock(this.state)
-        this.setState( (prevState) => ({
+        this.setState({
             name: "",
-            creator: "",
-            vendor_id: prevState.vendor_id
-        }))
+            creator: ""
+        })
     }
 
     render() {

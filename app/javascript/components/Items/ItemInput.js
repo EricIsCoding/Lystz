@@ -30,15 +30,12 @@ class ItemInput extends Component {
         e.preventDefault();
         e.target.parentElement.parentElement.classList = 'collapse'     
         this.props.addItem(this.state)
-        this.setState((prevState) => ({
-                name: "",
-                brand: "",
-                description: "",
-                quantity: "",
-                vendor_id: prevState.vendor_id,
-                block_id: prevState.block_id  
-            })
-        )
+        this.setState({
+            name: "",
+            brand: "",
+            description: "",
+            quantity: ""
+        })
     }
 
     render() {
