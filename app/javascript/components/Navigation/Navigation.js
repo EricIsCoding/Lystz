@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-ro
 import Home from '../../containers/Home'
 import VendorPage from '../../containers/VendorPage'
 import BlockPage from '../../containers/BlockPage'
-import Dropdown from './Dropdown'
+import GroupPage from '../../containers/GroupPage'
 import OptionsDropdown from './OptionsDropdown'
 
 
@@ -23,12 +23,13 @@ const Navigation =  (props) => {
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          { <OptionsDropdown /> }
+          <OptionsDropdown />
         </Nav>
       </Navbar>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/blocks" component={BlockPage}/>
+        <Route exact path="/group/:id" component={GroupPage}/>
         <Route exact path="/:id/:slug/blocks" component={VendorPage}/>
         <Route render={() => <Redirect to={{pathname: "/"}} />} />
       </Switch>
