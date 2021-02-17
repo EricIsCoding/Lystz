@@ -18,6 +18,7 @@ class VendorPage extends Component {
         creator={block.creator}
         vendorId={block.vendorId} 
         items={block.items}
+        page="vendor"
         vendorName={block.vendorName}
         share={block.share}/>
     })
@@ -38,18 +39,18 @@ class VendorPage extends Component {
     }
 
     render() {
-        return <div>
+        return <>
         <h1>{this.props.vendor.name}</h1>
         <Container>
             {this.renderRows()}
             <BlockInput vendorId={this.props.vendor.id}/>
         </Container>
-        </div>
+        </>
     }
 }
 
 const mapStateToProps = (state, props) => {
-    let vendor = Object.values(filtered({...state.vendors}, [props.match.params.id]))[0]
+    let vendor = Object.values(filtered(state.vendors, [props.match.params.id]))[0]
     let blocks = Object.values(filtered(state.blocks, vendor.blockIds)).map(block => {
        return {...block, items: Object.values(filtered(state.items, block.itemIds))}
     })

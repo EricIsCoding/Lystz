@@ -17,7 +17,7 @@ class BlockPage extends Component {
         creator={block.creator}
         vendorId={block.vendorId} 
         items={block.items}
-        blockPage={true}
+        page="block"
         vendorName={block.vendorName}/>})
     }
 
