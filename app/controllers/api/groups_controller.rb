@@ -15,16 +15,21 @@ class API::GroupsController < ApplicationController
 
   # POST /groups
   def create
-    group = group.new(group_name: group_params["group_name"])
+    group = Group.new(group_name: group_params["group_name"])
 
     if(group.save)
-      current_user.group_invite = "accepted"
+      current_user.group = group
       group.users << current_user
       user = User.find_by(email: group_params['invite'])
       if(user)
-        user.group = group
-        user.group_invite = "recieved"
-        render json: @group
+        GroupInvite.create(
+          user_id: user.id,
+          group_name: group.group_name,
+          group_id: group.id,
+          status: "pending",
+          invited_by: current_user.email
+        )
+        render json: UserSerializer.new(current_user).serializable_hash.to_json
       end
     else
       render json: @group.errors, status: :unprocessable_entity
@@ -33,9 +38,15 @@ class API::GroupsController < ApplicationController
 
   # PATCH/PUT /groups/1
   def update
-
-    if @group.update(group_params)
-      render json: @group
+    if params['group']['invite'] == "accepted"
+      @group.users << current_user
+      if @group.save
+        current_user.update(group_invite: nil)
+        render json: UserSerializer.new(current_user).serializable_hash.to_json
+      end
+    elsif params['group']['invite'] == "declined"
+      current_user.update(group_invite: nil)
+      render json: UserSerializer.new(current_user).serializable_hash.to_json
     else
       render json: @group.errors, status: :unprocessable_entity
     end
