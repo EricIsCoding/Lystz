@@ -8,18 +8,31 @@ import ShareButton from './ShareButton'
 
 const BlockTitle = (props) => {
 
-    if(!props.blockPage){
-        debugger;
+    const header = () => {
+        if(props.page != "group") {
+            return(<h5>{props.name}</h5>)
+        } else {
+            return(
+                <>
+                <h5>{props.name} : {props.vendorName}</h5>
+                <p>Created By: {props.creator}</p>
+                </>
+            )
+        }
+    }
+
+    if(props.page !== "block"){
         return(
         <>
          <Card>
             <Accordion.Toggle as={Card.Body} eventKey={props.id}>
-            <h5>{props.name}</h5>
+            {header()}
             </Accordion.Toggle>
             <Accordion.Collapse eventKey={props.id}>
                 <Card.Body>
                     <ButtonGroup toggle size="sm">
-                        <DeleteButton type="block" id={props.id} vendorId={props.vendorId} /> <ShareButton id={props.id} share={props.share}/>
+                        {props.page == "vendor" ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/> : ""}
+                        <ShareButton id={props.id} share={props.share}/>
                     </ButtonGroup>
                 </Card.Body>
             </Accordion.Collapse>

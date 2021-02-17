@@ -24,7 +24,7 @@ const Block = (props) => {
     }
 
     const itemInput = () => {
-        if (!props.blockPage) {
+        if (props.page !== "block") {
             return <ItemInput 
             vendorId={props.vendorId} 
             blockId={props.id} 
@@ -33,10 +33,21 @@ const Block = (props) => {
         }
     }
 
+    const renderTitle = () => {
+       return( <BlockTitle 
+        id={props.id} 
+        name={props.name} 
+        vendorId={props.vendorId} 
+        vendorName={props.vendorName} 
+        page={props.page}
+        creator={props.creator}
+        share={props.share}/>)  
+    }
+
     return(
      <Col lg={4} className="p-1">
         <Accordion>
-            <BlockTitle id={props.id} name={props.name} vendorId={props.vendorId} vendorName={props.vendorName} blockPage={props.blockPage} share={props.share}/>  
+            {renderTitle()}
             {renderItems()}
             {itemInput()}
         </Accordion>
