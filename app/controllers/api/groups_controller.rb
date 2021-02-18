@@ -16,21 +16,19 @@ class API::GroupsController < ApplicationController
   # POST /groups
   def create
     group = Group.new(group_name: group_params["group_name"])
+    user = User.find_by(email: group_params['invite'])
 
-    if(group.save)
+    if(user && group.save)
       current_user.group = group
       group.users << current_user
-      user = User.find_by(email: group_params['invite'])
-      if(user)
-        GroupInvite.create(
-          user_id: user.id,
-          group_name: group.group_name,
-          group_id: group.id,
-          status: "pending",
-          invited_by: current_user.email
-        )
-        render json: UserSerializer.new(current_user).serializable_hash.to_json
-      end
+      GroupInvite.create(
+        user_id: user.id,
+        group_name: group.group_name,
+        group_id: group.id,
+        status: "pending",
+        invited_by: current_user.email
+      )
+      render json: UserSerializer.new(current_user).serializable_hash.to_json
     else
       render json: @group.errors, status: :unprocessable_entity
     end
