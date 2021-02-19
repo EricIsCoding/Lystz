@@ -60,4 +60,4 @@
 #     # password: "please use keys"
 #   }
 
-server '192.3.248.231', user: 'deploy', roles: %w{app db web}, ssh_options: {port: 6258}
+server '192.3.248.231', user: 'lystz', roles: %w{app db web}
