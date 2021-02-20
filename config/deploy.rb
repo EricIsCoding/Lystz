@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:EricIsCoding/Lystz.git"
 set :branch, "main"
 
 # Deploy to the user's home directory
-set :deploy_to, "/home/lystz/code/#{fetch :application}"
+set :deploy_to, "/home/lystz/app/"
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 
