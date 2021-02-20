@@ -5,6 +5,7 @@ class CreateGroupInvites < ActiveRecord::Migration[6.0]
       t.string :status
       t.string :group_id
       t.string :invited_by
+      t.string :group_name
 
       t.timestamps
     end

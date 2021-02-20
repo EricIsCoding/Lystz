@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: lystz_production
+  database: lystz
   username: lystz
   password: <%= ENV['LYSTZ_DATABASE_PASSWORD'] %>
