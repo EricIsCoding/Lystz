@@ -15,13 +15,11 @@ require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-config.secret_key_base = '<%= ENV["SECRET_KEY_BASE"] %>' 
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ArtLabCollab
+module Lystz
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -33,6 +31,8 @@ module ArtLabCollab
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.secret_key_base = '<%= ENV["SECRET_KEY_BASE"] %>' 
 
     config.generators do |g|
       g.template_engine nil #to skip views
