@@ -82,4 +82,4 @@ production:
   <<: *default
   database: lysts_production
   username: lystz
-  password: <%= ENV['lystz_DATABASE_PASSWORD'] %>
+  password: <%= ENV['LYSTZ_DATABASE_PASSWORD'] %>
