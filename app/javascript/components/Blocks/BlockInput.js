@@ -39,7 +39,7 @@ class BlockInput extends Component {
         <Accordion>
         <Card style={{ width: '18rem' }}>
         <Accordion.Toggle as={Card.Header} eventKey="input">
-        Add Block!
+        Add Section!
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="input">
         <Card.Body>

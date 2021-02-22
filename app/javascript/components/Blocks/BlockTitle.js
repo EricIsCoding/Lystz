@@ -5,12 +5,13 @@ import Accordion from 'react-bootstrap/Accordion'
 
 import DeleteButton from '../DeleteButton'
 import ShareButton from './ShareButton'
+import { blockAddSuccess } from '../../actions/blockActions'
 
 const BlockTitle = (props) => {
 
     const header = () => {
         if(props.page != "group") {
-            return(<h5>{props.name}</h5>)
+            return(<h5>{props.name} : {props.vendorName}</h5>)
         } else {
             return(
                 <>
@@ -21,17 +22,17 @@ const BlockTitle = (props) => {
         }
     }
 
-    if(props.page !== "block"){
+    if(props.page == "vendor"){
         return(
         <>
          <Card>
             <Accordion.Toggle as={Card.Body} eventKey={props.id}>
-            {header()}
+            <h5>{props.name}</h5>
             </Accordion.Toggle>
             <Accordion.Collapse eventKey={props.id}>
                 <Card.Body>
                     <ButtonGroup toggle size="sm">
-                        {props.page == "vendor" ? <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/> : ""}
+                        <DeleteButton type="block" id={props.id} vendorId={props.vendorId}/>
                         <ShareButton id={props.id} share={props.share}/>
                     </ButtonGroup>
                 </Card.Body>
@@ -42,7 +43,7 @@ const BlockTitle = (props) => {
     } else {
         return(
         <Card className="p-2">
-            <h5>{props.name} : {props.vendorName}</h5>
+            {header()}
         </Card>
         )
     }
