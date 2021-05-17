@@ -1,24 +1,19 @@
-# README
+# Lystz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app for creating your lists, your way. And then sharing them with others.
 
-Things you may want to cover:
+## The Story
 
-* Ruby version
+This project was originally built as a seperated front end and back end for my final Flatiron School project. My wife was looking for an app that would allow her to create lists for groceries, or tasks that she could organize however she wanted. After my final project I refactored the app to a single React-On-Rails app using webpacker and passenger to deploy the site to my private server.
 
-* System dependencies
 
-* Configuration
+## The Tech
 
-* Database creation
+* Utilized React to build a mobile-friendly client-side rendered front-end.
+* Built the backend API using RESTful practices and Ruby on Rails. 
+* Used Redux as the front-end state management tool and React-Bootstrap for Styling
+* Utilized ActiveRecord, PostgreSQL, and the JSON API to build the database.
 
-* Database initialization
+## [Video Demo](https://youtu.be/7P44F1M-DJ8)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## [It's Live!](https://lystz.online)
