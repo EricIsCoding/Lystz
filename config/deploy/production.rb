@@ -60,4 +60,4 @@
 #     # password: "please use keys"
 #   }
 
-server '192.3.248.231', user: 'lystz', roles: %w{app db web}
+server '192.3.248.231', user: 'lystzadmin', roles: %w{app db web}

@@ -1,17 +1,17 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.15.0"
+lock "~> 3.16.0"
 
 set :application, "lystz"
 set :repo_url, "git@github.com:EricIsCoding/Lystz.git"
 set :branch, "main"
 
 # Deploy to the user's home directory
-set :deploy_to, "/home/lystz/app/"
+set :deploy_to, "/home/lystzadmin/site"
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 
 # Only keep the last 5 releases to save disk space
-set :keep_releases, 5
+set :keep_releases, 3
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
